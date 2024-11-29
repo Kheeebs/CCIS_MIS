@@ -1,0 +1,2692 @@
+    <script>
+      function toggleDropdown(dropdownId, event) {
+        event.stopPropagation(); // Prevent the click event from bubbling up
+        var dropdownContent = document.getElementById(dropdownId);
+        var isExpanded = dropdownContent.style.display === "block";
+        dropdownContent.style.display = isExpanded ? "none" : "block";
+        event.currentTarget.setAttribute("aria-expanded", !isExpanded);
+      }
+
+      // Close dropdown if clicked outside
+      document.addEventListener("click", function (event) {
+        const dropdowns = document.querySelectorAll(".dropdown-content");
+        dropdowns.forEach((dropdown) => {
+          if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+          }
+        });
+      });
+
+      function confirmLogout(event) {
+        if (!confirm("Are you sure you want to log out?")) {
+          event.preventDefault();
+        }
+      }
+
+      function showSubjects(program) {
+        const yearLevel = document.getElementById("year-level").value;
+        const semester = document.getElementById("semester").value;
+        const subjectsDisplay = document.getElementById("subjects-display");
+
+        // Clear previous subjects
+        subjectsDisplay.innerHTML = "";
+
+        // Define subjects based on program, year level, and semester
+        if (
+          program === "BSIT" &&
+          yearLevel === "first-year" &&
+          semester === "first-semester"
+        ) {
+          subjectsDisplay.innerHTML = `
+      <div class="year-header">FIRST YEAR</div>
+      <div class="semester">
+        <div class="semester-header">FIRST SEMESTER</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Cat No.</th>
+              <th>Course Title</th>
+              <th>Credit Unit</th>
+              <th>Prerequisite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ICS 101</td>
+              <td>Introduction to Computing</td>
+              <td>2</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>ICS 101L</td>
+              <td>Introduction to Computing Lab</td>
+              <td>1</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Math Plus</td>
+              <td>Pre-Calculus for Non-STEM</td>
+              <td>0</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>ICS 102</td>
+              <td>Computer Programming 1</td>
+              <td>2</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>ICS 102L</td>
+              <td>Computer Programming 1 Lab</td>
+              <td>1</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>GEN ED 1</td>
+              <td>Understanding the Self</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>GEN ED 2</td>
+              <td>Reading in the Philippine History</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>GEN ED 10</td>
+              <td>Technical Writing in ICT</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>RS 1</td>
+              <td>God's Salvific Act</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>NSTP 1</td>
+              <td>National Service Training Program 1</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>PE 1</td>
+              <td>Movement Enhancement (ME)</td>
+              <td>2</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    `;
+        } else if (
+          program === "BSIT" &&
+          yearLevel === "first-year" &&
+          semester === "second-semester"
+        ) {
+          subjectsDisplay.innerHTML = `
+      <div class="year-header">FIRST YEAR</div>
+      <div class="semester">
+        <div class="semester-header">SECOND SEMESTER</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Cat No.</th>
+              <th>Course Title</th>
+              <th>Credit Unit</th>
+              <th>Prerequisite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ICS 103</td>
+              <td>Computer Programming 2</td>
+              <td>2</td>
+              <td>ICS 102</td>
+            </tr>
+            <tr>
+              <td>ICS 103L</td>
+              <td>Computer Programming 2 Lab</td>
+              <td>1</td>
+              <td>ICS 102L</td>
+            </tr>
+            <tr>
+              <td>ICS 104</td>
+              <td>Digital Logic Design</td>
+              <td>2</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>ICS 104L</td>
+              <td>Digital Logic Design Lab</td>
+              <td>1</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>GEN ED 3</td>
+              <td>Mathematics in the Modern World</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>GEN ED 4</td>
+              <td>The Contemporary World</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>GEN ED 5</td>
+              <td>The Life and Works of Rizal</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>RS 2</td>
+              <td>Responding to God's Call by Becoming Fully Human</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>NSTP 2</td>
+              <td>National Service Training Program 2</td>
+              <td>3</td>
+              <td>NSTP 1</td>
+            </tr>
+            <tr>
+              <td>PE 2</td>
+              <td>Fitness Exercises (FE)</td>
+              <td>2</td>
+              <td>PE 1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    `;
+        } else if (
+          program === "BSIT" &&
+          yearLevel === "second-year" &&
+          semester === "first-semester"
+        ) {
+          subjectsDisplay.innerHTML = `
+      <div class="year-header">SECOND YEAR</div>
+      <div class="semester">
+        <div class="semester-header">FIRST SEMESTER</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Cat No.</th>
+              <th>Course Title</th>
+              <th>Credit Unit</th>
+              <th>Prerequisite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ICS 105</td>
+              <td>Information Management</td>
+              <td>2</td>
+              <td>ICS 104</td>
+            </tr>
+            <tr>
+              <td>ICS 105 L</td>
+              <td>Information Management Lab</td>
+              <td>1</td>
+              <td>ICS 104</td>
+            </tr>
+            <tr>
+              <td>IT DMATH</td>
+              <td>Discrete Mathematics</td>
+              <td>3</td>
+              <td>ICS 104</td>
+            </tr>
+            <tr>
+              <td>IT OOP</td>
+              <td>Object-Oriented Programming and Development</td>
+              <td>2</td>
+              <td>ICS 103, ICS 104</td>
+            </tr>
+            <tr>
+              <td>IT OOP L</td>
+              <td>Object-Oriented Programming and Development Lab</td>
+              <td>1</td>
+              <td>ICS 103, ICS 104</td>
+            </tr>
+            <tr>
+              <td>IT NET 1</td>
+              <td>Computer Networks 1</td>
+              <td>2</td>
+              <td>ICS 101</td>
+            </tr>
+            <tr>
+              <td>IT NET 1 L</td>
+              <td>Computer Networks 1 Lab</td>
+              <td>1</td>
+              <td>ICS 101</td>
+            </tr>
+            <tr>
+              <td>GEN ED 5</td>
+              <td>Purposive Communications</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>GEN ED 6</td>
+              <td>Art Appreciation</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>RS 3</td>
+              <td>The Church and Her Celebrations</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>PE 3</td>
+              <td>Dance, Sports, Outdoor and Adventure I</td>
+              <td>2</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    `;
+        } else if (
+          program === "BSIT" &&
+          yearLevel === "second-year" &&
+          semester === "second-semester"
+        ) {
+          subjectsDisplay.innerHTML = `
+      <div class="year-header">SECOND YEAR</div>
+      <div class="semester">
+        <div class="semester-header">SECOND SEMESTER</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Cat No.</th>
+              <th>Course Title</th>
+              <th>Credit Unit</th>
+              <th>Prerequisite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>IT HCI</td>
+              <td>Human-Computer Interaction Applications</td>
+              <td>2</td>
+              <td>2nd Year Standing</td>
+            </tr>
+            <tr>
+              <td>IT HCIL</td>
+              <td>Human-Computer Interaction Applications Lab</td>
+              <td>1</td>
+              <td>2nd Year Standing</td>
+            </tr>
+            <tr>
+              <td>IT NET2</td>
+              <td>Computer Networks 2</td>
+              <td>2</td>
+              <td>IT NET1</td>
+            </tr>
+            <tr>
+              <td>IT NET2L</td>
+              <td>Computer Networks 2 Lab</td>
+              <td>1</td>
+              <td>IT NET1</td>
+            </tr>
+            <tr>
+              <td>IT IPT</td>
+              <td>Integrative Programming and Technologies 1</td>
+              <td>3</td>
+              <td>ICS 103, IT OOP</td>
+            </tr>
+            <tr>
+              <td>IT IPT L</td>
+              <td>Integrative Programming and Technologies 1 Lab</td>
+              <td>3</td>
+              <td>ICS 103, IT OOP</td>
+            </tr>
+            <tr>
+              <td>IT QM</td>
+              <td>Quantitative Methods</td>
+              <td>3</td>
+              <td>Gen Ed 4</td>
+            </tr>
+            <tr>
+              <td>GEN ED 7</td>
+              <td>Science, Technology and Society</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>GEN ED 8</td>
+              <td>Ethics</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>RS 4</td>
+              <td>Christian Discipleship: Stewardship and</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>PE 4</td>
+              <td>Dance, Sports, Outdoor and Adventure II</td>
+              <td>2</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    `;
+        } else if (
+          program === "BSIT" &&
+          yearLevel === "second-year" &&
+          semester === "summer"
+        ) {
+          subjectsDisplay.innerHTML = `
+    <div class="year-header">SECOND YEAR</div>
+      <div class="semester">
+        <div class="semester-header">SUMMER</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Cat No.</th>
+              <th>Course Title</th>
+              <th>Credit Unit</th>
+              <th>Prerequisite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ITE 1</td>
+              <td>IT Elective 1</td>
+              <td>2</td>
+              <td>2nd Year Standing</td>
+            </tr>
+            <tr>
+              <td>ITE 1 L</td>
+              <td>IT Elective 1 Lab</td>
+              <td>1</td>
+              <td>2nd Year Standing</td>
+            </tr>
+            <tr>
+              <td>IT Prof Elec 1</td>
+              <td>IT Professional Elective 1</td>
+              <td>2</td>
+              <td>2nd Year Standing</td>
+            </tr>
+            <tr>
+              <td>IT Prof Elec 1 L</td>
+              <td>IT Professional Elective 1 Lab</td>
+              <td>1</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    `;
+        } else if (
+          program === "BSIT" &&
+          yearLevel === "third-year" &&
+          semester === "first-semester"
+        ) {
+          subjectsDisplay.innerHTML = `
+      <div class="year-header">THIRD YEAR</div>
+          <!-- Semesters Side by Side -->
+          <div class="semesters">
+            <!-- First Semester -->
+            <div class="semester">
+              <div class="semester-header">FIRST SEMESTER</div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Cat No.</th>
+                    <th>Course Title</th>
+                    <th>Credit Unit</th>
+                    <th>Prerequisite</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ICS 106</td>
+                    <td>Application Development and Emerging Technologies</td>
+                    <td>2</td>
+                    <td>ICS 103, ICS 104</td>
+                  </tr>
+                  <tr>
+                    <td>ICS 106 L</td>
+                    <td>
+                      Application Development and Emerging Technologies Lab
+                    </td>
+                    <td>1</td>
+                    <td>ICS 103, ICS 104</td>
+                  </tr>
+                  <tr>
+                    <td>IT DBASE</td>
+                    <td>Advanced Database System</td>
+                    <td>2</td>
+                    <td>ICS 105</td>
+                  </tr>
+                  <tr>
+                    <td>IT DBASE L</td>
+                    <td>Advanced Database System Lab</td>
+                    <td>1</td>
+                    <td>ICS 105</td>
+                  </tr>
+                  <tr>
+                    <td>IT SIA</td>
+                    <td>System Integration and Architecture</td>
+                    <td>2</td>
+                    <td>ICS 105</td>
+                  </tr>
+                  <tr>
+                    <td>IT SIA L</td>
+                    <td>System Integration and Architecture Lab</td>
+                    <td>1</td>
+                    <td>ICS 105</td>
+                  </tr>
+                  <tr>
+                    <td>IT Prof Elec2</td>
+                    <td>IT Professional Elective 2</td>
+                    <td>2</td>
+                    <td>3rd Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>IT Prof Elec2 L</td>
+                    <td>IT Professional Elective 2 lab</td>
+                    <td>1</td>
+                    <td>3rd Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>GEN ED 9</td>
+                    <td>Life and Works of Rizal</td>
+                    <td>3</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+    `;
+        } else if (
+          program === "BSIT" &&
+          yearLevel === "third-year" &&
+          semester === "second-semester"
+        ) {
+          subjectsDisplay.innerHTML = `
+    <div class="year-header">THIRD YEAR</div>
+      <div class="semester">
+              <div class="semester-header">SECOND SEMESTER</div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Cat No.</th>
+                    <th>Course Title</th>
+                    <th>Credit Unit</th>
+                    <th>Prerequisite</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>IT IAS1</td>
+                    <td>Information Assurance and Security 1</td>
+                    <td>2</td>
+                    <td>IT SIA</td>
+                  </tr>
+                  <tr>
+                    <td>IT IAS1L</td>
+                    <td>Information Assurance and Security 1 Lab</td>
+                    <td>2</td>
+                    <td>IT SIA</td>
+                  </tr>
+                  <tr>
+                    <td>ITE 2</td>
+                    <td>IT Elective 2</td>
+                    <td>2</td>
+                    <td>3rd Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>ITE 2L</td>
+                    <td>IT Elective 2 Lab</td>
+                    <td>2</td>
+                    <td>3rd Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>IT Prof Elec3</td>
+                    <td>IT Professional Elective 3</td>
+                    <td>2</td>
+                    <td>3rd Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>IT Prof Elec3 L</td>
+                    <td>IT Professional Elective 3 Lab</td>
+                    <td>2</td>
+                    <td>3rd Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>IT Prof Elec4</td>
+                    <td>IT Professional Eletive 4</td>
+                    <td>2</td>
+                    <td>3rd Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>IT Prof Elec4 L</td>
+                    <td>IT Professional Elective 4 Lab</td>
+                    <td>2</td>
+                    <td>3rd Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>IT THS1</td>
+                    <td>Information Technology Capstone 1</td>
+                    <td>2</td>
+                    <td>ICS 106, IT QM</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+    `;
+        } else if (
+          program === "BSIT" &&
+          yearLevel === "third-year" &&
+          semester === "summer"
+        ) {
+          subjectsDisplay.innerHTML = `
+    <div class="year-header">THIRD YEAR</div>
+      <div class="semester">
+            <div class="semester-header">SUMMER</div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Cat No.</th>
+                  <th>Course Title</th>
+                  <th>Credit Unit</th>
+                  <th>Prerequisite</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>GEN ED 12</td>
+                  <td>The Entrepreneurial Mind</td>
+                  <td>3</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>ITE 1</td>
+                  <td>IT Elective 1</td>
+                  <td>2</td>
+                  <td>2nd Year Standing</td>
+                </tr>
+                <tr>
+                  <td>ITE 1 L</td>
+                  <td>IT Elective 1 Lab</td>
+                  <td>1</td>
+                  <td>2nd Year Standing</td>
+                </tr>
+                <tr>
+                  <td>IT Prof Elec 1</td>
+                  <td>IT Professional Elective 1</td>
+                  <td>2</td>
+                  <td>2nd Year Standing</td>
+                </tr>
+                <tr>
+                  <td>IT Prof Elec 1 L</td>
+                  <td>IT Professional Elective 1 Lab</td>
+                  <td>1</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    `;
+        } else if (
+          program === "BSIT" &&
+          yearLevel === "fourth-year" &&
+          semester === "first-semester"
+        ) {
+          subjectsDisplay.innerHTML = `
+      <div class="year-header">FOURTH YEAR</div>
+          <!-- Semesters Side by Side -->
+          <div class="semesters">
+            <!-- First Semester -->
+            <div class="semester">
+              <div class="semester-header">FIRST SEMESTER</div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Cat No.</th>
+                    <th>Course Title</th>
+                    <th>Credit Unit</th>
+                    <th>Prerequisite</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>IT SAM</td>
+                    <td>System Administration and Maintenance</td>
+                    <td>2</td>
+                    <td>IT IAS1</td>
+                  </tr>
+                  <tr>
+                    <td>IT SAML</td>
+                    <td>System Administration and Maintenance Lab</td>
+                    <td>1</td>
+                    <td>IT IAS1</td>
+                  </tr>
+                  <tr>
+                    <td>IT Prof Elec5</td>
+                    <td>IT Professional Elective 5</td>
+                    <td>2</td>
+                    <td>4th Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>IT Prof Elec5 L</td>
+                    <td>IT Professional Elective 5 Lab</td>
+                    <td>1</td>
+                    <td>4th Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>IT Prof Elec6</td>
+                    <td>IT Professional Elective 6</td>
+                    <td>2</td>
+                    <td>4th Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>IT Prof ELec6 L</td>
+                    <td>IT Professional Elective 6 Lab</td>
+                    <td>1</td>
+                    <td>4th Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>IT THS 2</td>
+                    <td>Information Technology Capstone 2</td>
+                    <td>3</td>
+                    <td>IT THS1</td>
+                  </tr>
+                  <tr>
+                    <td>IT IAS2</td>
+                    <td>Information Assurance and Security 2</td>
+                    <td>2</td>
+                    <td>IT THS1</td>
+                  </tr>
+                  <tr>
+                    <td>IT IAS2 L</td>
+                    <td>Information Assurance and Security 2 Lab</td>
+                    <td>1</td>
+                    <td>IT THS1</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+    `;
+        } else if (
+          program === "BSIT" &&
+          yearLevel === "fourth-year" &&
+          semester === "second-semester"
+        ) {
+          subjectsDisplay.innerHTML = `
+    <div class="year-header">FOURTH YEAR</div>
+     <div class="semester">
+              <div class="semester-header">SECOND SEMESTER</div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Cat No.</th>
+                    <th>Course Title</th>
+                    <th>Credit Unit</th>
+                    <th>Prerequisite</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>IT IES</td>
+                    <td>Adcanced Seminars and Exposure</td>
+                    <td>3</td>
+                    <td>4th Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>IT PRC</td>
+                    <td>Information Technology Practicum</td>
+                    <td>6</td>
+                    <td>4th Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>IT DP</td>
+                    <td>IT Capstone Documentation and Publication</td>
+                    <td>3</td>
+                    <td>4th Year Standing</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+    `;
+        } else if (
+          program === "BSCS" &&
+          yearLevel === "first-year" &&
+          semester === "first-semester"
+        ) {
+          subjectsDisplay.innerHTML = `
+     <div class="year-header">FIRST YEAR</div>
+          <div class="semesters">
+            <!-- First Semester -->
+            <div class="semester">
+              <div class="semester-header">FIRST SEMESTER</div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Cat No.</th>
+                    <th>Course Title</th>
+                    <th>Credit Unit</th>
+                    <th>Prerequisite</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ICS 101</td>
+                    <td>Introduction to Computing</td>
+                    <td>2</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>ICS 101L</td>
+                    <td>Introduction to Computing Lab</td>
+                    <td>1</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Math Plus</td>
+                    <td>Pre-Calculus for Non-STEM</td>
+                    <td>0</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>ICS 102</td>
+                    <td>Computer Programming 1</td>
+                    <td>2</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>ICS 102L</td>
+                    <td>Computer Programming 1 Lab</td>
+                    <td>1</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>GEN ED 1</td>
+                    <td>Understanding the Self</td>
+                    <td>3</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>GEN ED 2</td>
+                    <td>Reading in the Philippine History</td>
+                    <td>3</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>GEN ED 10</td>
+                    <td>Technical Writing in ICT</td>
+                    <td>3</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>RS 1</td>
+                    <td>God's Salvific Act</td>
+                    <td>3</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>NSTP 1</td>
+                    <td>National Service Training Program 1</td>
+                    <td>3</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>PE 1</td>
+                    <td>Movement Enhancement (ME)</td>
+                    <td>2</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+    `;
+        } else if (
+          program === "BSCS" &&
+          yearLevel === "first-year" &&
+          semester === "second-semester"
+        ) {
+          subjectsDisplay.innerHTML = `
+    <div class="year-header">FIRST YEAR</div>
+     <div class="semester">
+              <div class="semester-header">SECOND SEMESTER</div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Cat No.</th>
+                    <th>Course Title</th>
+                    <th>Credit Unit</th>
+                    <th>Prerequisite</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ICS 103</td>
+                    <td>Computer Programming 2</td>
+                    <td>2</td>
+                    <td>ICS 102</td>
+                  </tr>
+                  <tr>
+                    <td>ICS 103L</td>
+                    <td>Computer Programming 2 Lab</td>
+                    <td>1</td>
+                    <td>ICS 102L</td>
+                  </tr>
+                  <tr>
+                    <td>ICS 104</td>
+                    <td>Digital Logic Design</td>
+                    <td>2</td>
+                    <td>ICS 102</td>
+                  </tr>
+                  <tr>
+                    <td>ICS 104L</td>
+                    <td>Digital Logic Design Lab</td>
+                    <td>1</td>
+                    <td>ICS 102</td>
+                  </tr>
+                  <tr>
+                    <td>CS SIP</td>
+                    <td>Social Issue and Professional Practice</td>
+                    <td>3</td>
+                    <td>ICS 101</td>
+                  </tr>
+                  <tr>
+                    <td>GEN ED 3</td>
+                    <td>Mathematics in the Modern World</td>
+                    <td>3</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>GEN ED 4</td>
+                    <td>The Contemporary World</td>
+                    <td>3</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>GEN ED 5</td>
+                    <td>The Life and Works of Rizal</td>
+                    <td>3</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>RS 2</td>
+                    <td>Responding to God's Call by Becoming Fully Human</td>
+                    <td>3</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>NSTP 2</td>
+                    <td>National Service Training Program 2</td>
+                    <td>3</td>
+                    <td>NSTP 1</td>
+                  </tr>
+                  <tr>
+                    <td>PE 2</td>
+                    <td>Fitness Exercises (FE)</td>
+                    <td>2</td>
+                    <td>PE 1</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+    `;
+        } else if (
+          program === "BSCS" &&
+          yearLevel === "second-year" &&
+          semester === "first-semester"
+        ) {
+          subjectsDisplay.innerHTML = `
+     <div class="year-header">SECOND YEAR</div>
+          <!-- Semesters Side by Side -->
+          <div class="semesters">
+            <!-- First Semester -->
+            <div class="semester">
+              <div class="semester-header">FIRST SEMESTER</div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Cat No.</th>
+                    <th>Course Title</th>
+                    <th>Credit Unit</th>
+                    <th>Prerequisite</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>CS ALG</td>
+                    <td>Design and Analysis of Algorithm</td>
+                    <td>3</td>
+                    <td>ICS 104</td>
+                  </tr>
+                  <tr>
+                    <td>CS DS1</td>
+                    <td>Discrete Structures 1</td>
+                    <td>3</td>
+                    <td>ICS 104</td>
+                  </tr>
+                  <tr>
+                    <td>CS OOP</td>
+                    <td>Object-Oriented Paradigms</td>
+                    <td>2</td>
+                    <td>ICS 104</td>
+                  </tr>
+                  <tr>
+                    <td>CS OOP L</td>
+                    <td>Object-Oriented Paradigms Lab</td>
+                    <td>1</td>
+                    <td>ICS 103, ICS 104</td>
+                  </tr>
+                  <tr>
+                    <td>CS QM</td>
+                    <td>Quantitative Methods</td>
+                    <td>3</td>
+                    <td>ICS 103, ICS 104</td>
+                  </tr>
+                  <tr>
+                    <td>CS NC</td>
+                    <td>Networking and Communications</td>
+                    <td>2</td>
+                    <td>ICS 101</td>
+                  </tr>
+                  <tr>
+                    <td>CS NC L</td>
+                    <td>Networking and Communications Lab</td>
+                    <td>1</td>
+                    <td>ICS 101</td>
+                  </tr>
+                  <tr>
+                    <td>GEN ED 5</td>
+                    <td>Purposive Communications</td>
+                    <td>3</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>GEN ED 6</td>
+                    <td>Art Appreciation</td>
+                    <td>3</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>RS 3</td>
+                    <td>The Church and Her Celebrations</td>
+                    <td>3</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>PE 3</td>
+                    <td>Dance, Sports, Outdoor and Adventure I</td>
+                    <td>2</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+    `;
+        } else if (
+          program === "BSCS" &&
+          yearLevel === "second-year" &&
+          semester === "second-semester"
+        ) {
+          subjectsDisplay.innerHTML = `
+    <div class="year-header">SECOND YEAR</div>
+     <div class="semester">
+              <div class="semester-header">SECOND SEMESTER</div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Cat No.</th>
+                    <th>Course Title</th>
+                    <th>Credit Unit</th>
+                    <th>Prerequisite</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ICS 105</td>
+                    <td>Information Management</td>
+                    <td>2</td>
+                    <td>ICS 104, CS ALG</td>
+                  </tr>
+                  <tr>
+                    <td>ICS 105 L</td>
+                    <td>Information Management Lab</td>
+                    <td>1</td>
+                    <td>ICS 104, CS ALG</td>
+                  </tr>
+                  <tr>
+                    <td>CS DS2</td>
+                    <td>Discrete Structures 2</td>
+                    <td>3</td>
+                    <td>CS DS1</td>
+                  </tr>
+                  <tr>
+                    <td>CS AR</td>
+                    <td>Computer Architecture and Organization</td>
+                    <td>3</td>
+                    <td>ICS 103, CS OOP</td>
+                  </tr>
+                  <tr>
+                    <td>CS Prof Elec1</td>
+                    <td>CS Professional Elective 1</td>
+                    <td>2</td>
+                    <td>3rd Yr. Standing</td>
+                  </tr>
+                  <tr>
+                    <td>CS Prof Elec1 L</td>
+                    <td>CS Professional Elective 1 Lab</td>
+                    <td>1</td>
+                    <td>3rd Yr. Standing</td>
+                  </tr>
+                  <tr>
+                    <td>GEN ED 7</td>
+                    <td>Science, Technology and Society</td>
+                    <td>3</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>GEN ED 8</td>
+                    <td>Ethics</td>
+                    <td>3</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Gen Ed 12</td>
+                    <td>The Entrepreneurial Mind</td>
+                    <td>3</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>RS 4</td>
+                    <td>Christian Discipleship: Stewardship and</td>
+                    <td>3</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>PE 4</td>
+                    <td>Dance, Sports, Outdoor and Adventure II</td>
+                    <td>2</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+    `;
+        } else if (
+          program === "BSCS" &&
+          yearLevel === "third-year" &&
+          semester === "first-semester"
+        ) {
+          subjectsDisplay.innerHTML = `
+     <div class="year-header">THIRD YEAR</div>
+          <!-- Semesters Side by Side -->
+          <div class="semesters">
+            <!-- First Semester -->
+            <div class="semester">
+              <div class="semester-header">FIRST SEMESTER</div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Cat No.</th>
+                    <th>Course Title</th>
+                    <th>Credit Unit</th>
+                    <th>Prerequisite</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ICS 106</td>
+                    <td>Application Development and Emerging Technologies</td>
+                    <td>2</td>
+                    <td>ICS 103, ICS 104</td>
+                  </tr>
+                  <tr>
+                    <td>ICS 106 L</td>
+                    <td>
+                      Application Development and Emerging Technologies Lab
+                    </td>
+                    <td>1</td>
+                    <td>ICS 103, ICS 104</td>
+                  </tr>
+                  <tr>
+                    <td>CS AMT</td>
+                    <td>Automata Theory and Formal Language</td>
+                    <td>2</td>
+                    <td>CS DS2</td>
+                  </tr>
+                  <tr>
+                    <td>CS HCI</td>
+                    <td>
+                      Human-Computer Interaction Principles and Methodologies
+                    </td>
+                    <td>1</td>
+                    <td>3rd Yr. Standing</td>
+                  </tr>
+                  <tr>
+                    <td>CS HCI L</td>
+                    <td>
+                      Human-Computer Interaction Principles and Methodologies
+                      Lab
+                    </td>
+                    <td>2</td>
+                    <td>3rd Yr. Standing</td>
+                  </tr>
+                  <tr>
+                    <td>CSE 1</td>
+                    <td>Computer Science Elective 1</td>
+                    <td>1</td>
+                    <td>3rd Yr. Standing</td>
+                  </tr>
+                  <tr>
+                    <td>CSE 1 L</td>
+                    <td>Computer Science Elective 1 lab</td>
+                    <td>2</td>
+                    <td>3rd Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>CS Math</td>
+                    <td>Advanced Mathematics for Computer Science</td>
+                    <td>1</td>
+                    <td>3rd Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>CS Prof Elec2</td>
+                    <td>CS Professional Elective 2</td>
+                    <td>3</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>CS Prof Elec2 L</td>
+                    <td>CS Professional Elective 2 lab</td>
+                    <td>3</td>
+                    <td>3rd Yr. Standing</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+    `;
+        } else if (
+          program === "BSCS" &&
+          yearLevel === "third-year" &&
+          semester === "second-semester"
+        ) {
+          subjectsDisplay.innerHTML = `
+    <div class="year-header">THIRD YEAR</div>
+     <div class="semester">
+              <div class="semester-header">SECOND SEMESTER</div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Cat No.</th>
+                    <th>Course Title</th>
+                    <th>Credit Unit</th>
+                    <th>Prerequisite</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>CS PL</td>
+                    <td>Programming Languages</td>
+                    <td>2</td>
+                    <td>CS AMT</td>
+                  </tr>
+                  <tr>
+                    <td>CS PL L</td>
+                    <td>Programming Languages Lab</td>
+                    <td>1</td>
+                    <td>CS AMT</td>
+                  </tr>
+                  <tr>
+                    <td>CS SE1</td>
+                    <td>Software Engineering 1</td>
+                    <td>2</td>
+                    <td>CS OOP, CS PL</td>
+                  </tr>
+                  <tr>
+                    <td>CS SE1 L</td>
+                    <td>Software Engineering 1 Lab</td>
+                    <td>1</td>
+                    <td>CS OOP, CS PL</td>
+                  </tr>
+                  <tr>
+                    <td>CS THS1</td>
+                    <td>Computer Science Thesis 1</td>
+                    <td>3</td>
+                    <td>CS OOP, CS QM</td>
+                  </tr>
+                  <tr>
+                    <td>CS OS</td>
+                    <td>Operating System</td>
+                    <td>2</td>
+                    <td>CS PL, CS OOP</td>
+                  </tr>
+                  <tr>
+                    <td>CS OS L</td>
+                    <td>Operating System Lab</td>
+                    <td>1</td>
+                    <td>CS PL, CS OOP</td>
+                  </tr>
+                  <tr>
+                    <td>CS Prof Elec3</td>
+                    <td>CS Professional Elective 3</td>
+                    <td>2</td>
+                    <td>3rd Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>CS Prof Elec3 L</td>
+                    <td>CS Professional Elective 3 Lab</td>
+                    <td>1</td>
+                    <td>3rd Yr. Standing</td>
+                  </tr>
+                  <tr>
+                    <td>Gen Ed 9</td>
+                    <td>Life and Works of Rizal</td>
+                    <td>3</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>CSE 2</td>
+                    <td>Computer Science Elective 2</td>
+                    <td>2</td>
+                    <td>3rd Yr. Standing</td>
+                  </tr>
+                  <tr>
+                    <td>CSE 2 L</td>
+                    <td>Computer Science Elective 2 Lab</td>
+                    <td>1</td>
+                    <td>3rd Yr. Standing</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+    `;
+        } else if (
+          program === "BSCS" &&
+          yearLevel === "third-year" &&
+          semester === "summer"
+        ) {
+          subjectsDisplay.innerHTML = `
+    <div class="year-header">THIRD YEAR</div>
+     <div class="semester">
+            <div class="semester-header">SUMMER</div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Cat No.</th>
+                  <th>Course Title</th>
+                  <th>Credit Unit</th>
+                  <th>Prerequisite</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>CS PRC</td>
+                  <td>Computer Science Practicum</td>
+                  <td>3</td>
+                  <td>3rd Year Standing</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    `;
+        } else if (
+          program === "BSCS" &&
+          yearLevel === "fourth-year" &&
+          semester === "first-semester"
+        ) {
+          subjectsDisplay.innerHTML = `
+     <div class="year-header">FOURTH YEAR</div>
+          <!-- Semesters Side by Side -->
+          <div class="semesters">
+            <!-- First Semester -->
+            <div class="semester">
+              <div class="semester-header">FIRST SEMESTER</div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Cat No.</th>
+                    <th>Course Title</th>
+                    <th>Credit Unit</th>
+                    <th>Prerequisite</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>CS THS2</td>
+                    <td>Computer Science Thesis 2</td>
+                    <td>3</td>
+                    <td>CS THS1</td>
+                  </tr>
+                  <tr>
+                    <td>CS SE2</td>
+                    <td>Software Engineering 2</td>
+                    <td>2</td>
+                    <td>CS SE1</td>
+                  </tr>
+                  <tr>
+                    <td>CS SE2 L</td>
+                    <td>Software Engineering 2 Lab</td>
+                    <td>2</td>
+                    <td>CS SE1</td>
+                  </tr>
+                  <tr>
+                    <td>CS IAS</td>
+                    <td>Information Assurance and Security</td>
+                    <td>1</td>
+                    <td>ICS 105</td>
+                  </tr>
+                  <tr>
+                    <td>CS IAS L</td>
+                    <td>Information Assurance and Security Lab</td>
+                    <td>2</td>
+                    <td>ICS 105</td>
+                  </tr>
+                  <tr>
+                    <td>IT Prof ELec6 L</td>
+                    <td>IT Professional Elective 6 Lab</td>
+                    <td>1</td>
+                    <td>4th Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>CSE 3</td>
+                    <td>Computer Science Elective 3</td>
+                    <td>2</td>
+                    <td>4th Yr. Standing</td>
+                  </tr>
+                  <tr>
+                    <td>CSE 3 L</td>
+                    <td>Computer Science Elective 3 Lab</td>
+                    <td>1</td>
+                    <td>4th Yr. Standing</td>
+                  </tr>
+                  <tr>
+                    <td>CS Prof Elec4</td>
+                    <td>CS Professional Elective 4</td>
+                    <td>2</td>
+                    <td>4th Yr. Standing</td>
+                  </tr>
+                  <tr>
+                    <td>CS Prof Elec4 L</td>
+                    <td>CS Professional Elective 4 Lab</td>
+                    <td>1</td>
+                    <td>4th Yr. Standing</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+    `;
+        } else if (
+          program === "BSCS" &&
+          yearLevel === "fourth-year" &&
+          semester === "second-semester"
+        ) {
+          subjectsDisplay.innerHTML = `
+    <div class="year-header">FOURTH YEAR</div>
+     <div class="semester">
+              <div class="semester-header">SECOND SEMESTER</div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Cat No.</th>
+                    <th>Course Title</th>
+                    <th>Credit Unit</th>
+                    <th>Prerequisite</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>CS IES</td>
+                    <td>Advanced Seminars and Exposure</td>
+                    <td>3</td>
+                    <td>4th Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>CS Prof Elec5</td>
+                    <td>CS Professional Elective 5</td>
+                    <td>2</td>
+                    <td>4th Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>CS Prof Elec5 L</td>
+                    <td>CS Professional Elective 5 Lab</td>
+                    <td>1</td>
+                    <td>4th Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>CS Prof Elec6</td>
+                    <td>CS Professional Elective 6</td>
+                    <td>2</td>
+                    <td>4th Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>CS Prof Elec6 L</td>
+                    <td>CS Professional Elective 6 Lab</td>
+                    <td>1</td>
+                    <td>4th Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>CSE 4</td>
+                    <td>Computer Science Elective 4</td>
+                    <td>2</td>
+                    <td>4th Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>CSE 4 L</td>
+                    <td>Computer Science Elective 4 Lab</td>
+                    <td>1</td>
+                    <td>4th Year Standing</td>
+                  </tr>
+                  <tr>
+                    <td>CS DP</td>
+                    <td>CS Thesis Documentation and Publication</td>
+                    <td>3</td>
+                    <td>4th Year Standing</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+    `;
+        } else {
+          subjectsDisplay.textContent = "No subjects found for this selection.";
+        }
+        function addProgram() {
+          const programName = prompt("Enter the new program name:");
+          if (programName) {
+            const programButtons = document.getElementById("program-buttons");
+            const newButton = document.createElement("button");
+            newButton.className = "program-button";
+            newButton.textContent = programName;
+            newButton.onclick = function () {
+              showSubjects(programName);
+            };
+            programButtons.insertBefore(
+              newButton,
+              programButtons.querySelector(".plus-button")
+            );
+          }
+        }
+      }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+} else if (
+    program === "BSIT" &&
+    yearLevel === "third-year" &&
+    semester === "first-semester"
+  ) {
+    subjectsDisplay.innerHTML = `
+<div class="year-header">THIRD YEAR</div>
+    <!-- Semesters Side by Side -->
+    <div class="semesters">
+      <!-- First Semester -->
+      <div class="semester">
+        <div class="semester-header">FIRST SEMESTER</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Cat No.</th>
+              <th>Course Title</th>
+              <th>Credit Unit</th>
+              <th>Prerequisite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ICS 106</td>
+              <td>Application Development and Emerging Technologies</td>
+              <td>2</td>
+              <td>ICS 103, ICS 104</td>
+            </tr>
+            <tr>
+              <td>ICS 106 L</td>
+              <td>
+                Application Development and Emerging Technologies Lab
+              </td>
+              <td>1</td>
+              <td>ICS 103, ICS 104</td>
+            </tr>
+            <tr>
+              <td>IT DBASE</td>
+              <td>Advanced Database System</td>
+              <td>2</td>
+              <td>ICS 105</td>
+            </tr>
+            <tr>
+              <td>IT DBASE L</td>
+              <td>Advanced Database System Lab</td>
+              <td>1</td>
+              <td>ICS 105</td>
+            </tr>
+            <tr>
+              <td>IT SIA</td>
+              <td>System Integration and Architecture</td>
+              <td>2</td>
+              <td>ICS 105</td>
+            </tr>
+            <tr>
+              <td>IT SIA L</td>
+              <td>System Integration and Architecture Lab</td>
+              <td>1</td>
+              <td>ICS 105</td>
+            </tr>
+            <tr>
+              <td>IT Prof Elec2</td>
+              <td>IT Professional Elective 2</td>
+              <td>2</td>
+              <td>3rd Year Standing</td>
+            </tr>
+            <tr>
+              <td>IT Prof Elec2 L</td>
+              <td>IT Professional Elective 2 lab</td>
+              <td>1</td>
+              <td>3rd Year Standing</td>
+            </tr>
+            <tr>
+              <td>GEN ED 9</td>
+              <td>Life and Works of Rizal</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+`;
+  } else if (
+    program === "BSIT" &&
+    yearLevel === "third-year" &&
+    semester === "second-semester"
+  ) {
+    subjectsDisplay.innerHTML = `
+<div class="year-header">THIRD YEAR</div>
+<div class="semester">
+        <div class="semester-header">SECOND SEMESTER</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Cat No.</th>
+              <th>Course Title</th>
+              <th>Credit Unit</th>
+              <th>Prerequisite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>IT IAS1</td>
+              <td>Information Assurance and Security 1</td>
+              <td>2</td>
+              <td>IT SIA</td>
+            </tr>
+            <tr>
+              <td>IT IAS1L</td>
+              <td>Information Assurance and Security 1 Lab</td>
+              <td>2</td>
+              <td>IT SIA</td>
+            </tr>
+            <tr>
+              <td>ITE 2</td>
+              <td>IT Elective 2</td>
+              <td>2</td>
+              <td>3rd Year Standing</td>
+            </tr>
+            <tr>
+              <td>ITE 2L</td>
+              <td>IT Elective 2 Lab</td>
+              <td>2</td>
+              <td>3rd Year Standing</td>
+            </tr>
+            <tr>
+              <td>IT Prof Elec3</td>
+              <td>IT Professional Elective 3</td>
+              <td>2</td>
+              <td>3rd Year Standing</td>
+            </tr>
+            <tr>
+              <td>IT Prof Elec3 L</td>
+              <td>IT Professional Elective 3 Lab</td>
+              <td>2</td>
+              <td>3rd Year Standing</td>
+            </tr>
+            <tr>
+              <td>IT Prof Elec4</td>
+              <td>IT Professional Eletive 4</td>
+              <td>2</td>
+              <td>3rd Year Standing</td>
+            </tr>
+            <tr>
+              <td>IT Prof Elec4 L</td>
+              <td>IT Professional Elective 4 Lab</td>
+              <td>2</td>
+              <td>3rd Year Standing</td>
+            </tr>
+            <tr>
+              <td>IT THS1</td>
+              <td>Information Technology Capstone 1</td>
+              <td>2</td>
+              <td>ICS 106, IT QM</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+`;
+  } else if (
+    program === "BSIT" &&
+    yearLevel === "third-year" &&
+    semester === "summer"
+  ) {
+    subjectsDisplay.innerHTML = `
+<div class="year-header">THIRD YEAR</div>
+<div class="semester">
+      <div class="semester-header">SUMMER</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Cat No.</th>
+            <th>Course Title</th>
+            <th>Credit Unit</th>
+            <th>Prerequisite</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>GEN ED 12</td>
+            <td>The Entrepreneurial Mind</td>
+            <td>3</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>ITE 1</td>
+            <td>IT Elective 1</td>
+            <td>2</td>
+            <td>2nd Year Standing</td>
+          </tr>
+          <tr>
+            <td>ITE 1 L</td>
+            <td>IT Elective 1 Lab</td>
+            <td>1</td>
+            <td>2nd Year Standing</td>
+          </tr>
+          <tr>
+            <td>IT Prof Elec 1</td>
+            <td>IT Professional Elective 1</td>
+            <td>2</td>
+            <td>2nd Year Standing</td>
+          </tr>
+          <tr>
+            <td>IT Prof Elec 1 L</td>
+            <td>IT Professional Elective 1 Lab</td>
+            <td>1</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+`;
+  } else if (
+    program === "BSIT" &&
+    yearLevel === "fourth-year" &&
+    semester === "first-semester"
+  ) {
+    subjectsDisplay.innerHTML = `
+<div class="year-header">FOURTH YEAR</div>
+    <!-- Semesters Side by Side -->
+    <div class="semesters">
+      <!-- First Semester -->
+      <div class="semester">
+        <div class="semester-header">FIRST SEMESTER</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Cat No.</th>
+              <th>Course Title</th>
+              <th>Credit Unit</th>
+              <th>Prerequisite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>IT SAM</td>
+              <td>System Administration and Maintenance</td>
+              <td>2</td>
+              <td>IT IAS1</td>
+            </tr>
+            <tr>
+              <td>IT SAML</td>
+              <td>System Administration and Maintenance Lab</td>
+              <td>1</td>
+              <td>IT IAS1</td>
+            </tr>
+            <tr>
+              <td>IT Prof Elec5</td>
+              <td>IT Professional Elective 5</td>
+              <td>2</td>
+              <td>4th Year Standing</td>
+            </tr>
+            <tr>
+              <td>IT Prof Elec5 L</td>
+              <td>IT Professional Elective 5 Lab</td>
+              <td>1</td>
+              <td>4th Year Standing</td>
+            </tr>
+            <tr>
+              <td>IT Prof Elec6</td>
+              <td>IT Professional Elective 6</td>
+              <td>2</td>
+              <td>4th Year Standing</td>
+            </tr>
+            <tr>
+              <td>IT Prof ELec6 L</td>
+              <td>IT Professional Elective 6 Lab</td>
+              <td>1</td>
+              <td>4th Year Standing</td>
+            </tr>
+            <tr>
+              <td>IT THS 2</td>
+              <td>Information Technology Capstone 2</td>
+              <td>3</td>
+              <td>IT THS1</td>
+            </tr>
+            <tr>
+              <td>IT IAS2</td>
+              <td>Information Assurance and Security 2</td>
+              <td>2</td>
+              <td>IT THS1</td>
+            </tr>
+            <tr>
+              <td>IT IAS2 L</td>
+              <td>Information Assurance and Security 2 Lab</td>
+              <td>1</td>
+              <td>IT THS1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+`;
+  } else if (
+    program === "BSIT" &&
+    yearLevel === "fourth-year" &&
+    semester === "second-semester"
+  ) {
+    subjectsDisplay.innerHTML = `
+<div class="year-header">FOURTH YEAR</div>
+<div class="semester">
+        <div class="semester-header">SECOND SEMESTER</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Cat No.</th>
+              <th>Course Title</th>
+              <th>Credit Unit</th>
+              <th>Prerequisite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>IT IES</td>
+              <td>Adcanced Seminars and Exposure</td>
+              <td>3</td>
+              <td>4th Year Standing</td>
+            </tr>
+            <tr>
+              <td>IT PRC</td>
+              <td>Information Technology Practicum</td>
+              <td>6</td>
+              <td>4th Year Standing</td>
+            </tr>
+            <tr>
+              <td>IT DP</td>
+              <td>IT Capstone Documentation and Publication</td>
+              <td>3</td>
+              <td>4th Year Standing</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+`;
+  } else if (
+    program === "BSCS" &&
+    yearLevel === "first-year" &&
+    semester === "first-semester"
+  ) {
+    subjectsDisplay.innerHTML = `
+<div class="year-header">FIRST YEAR</div>
+    <div class="semesters">
+      <!-- First Semester -->
+      <div class="semester">
+        <div class="semester-header">FIRST SEMESTER</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Cat No.</th>
+              <th>Course Title</th>
+              <th>Credit Unit</th>
+              <th>Prerequisite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ICS 101</td>
+              <td>Introduction to Computing</td>
+              <td>2</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>ICS 101L</td>
+              <td>Introduction to Computing Lab</td>
+              <td>1</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Math Plus</td>
+              <td>Pre-Calculus for Non-STEM</td>
+              <td>0</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>ICS 102</td>
+              <td>Computer Programming 1</td>
+              <td>2</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>ICS 102L</td>
+              <td>Computer Programming 1 Lab</td>
+              <td>1</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>GEN ED 1</td>
+              <td>Understanding the Self</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>GEN ED 2</td>
+              <td>Reading in the Philippine History</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>GEN ED 10</td>
+              <td>Technical Writing in ICT</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>RS 1</td>
+              <td>God's Salvific Act</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>NSTP 1</td>
+              <td>National Service Training Program 1</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>PE 1</td>
+              <td>Movement Enhancement (ME)</td>
+              <td>2</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+`;
+  } else if (
+    program === "BSCS" &&
+    yearLevel === "first-year" &&
+    semester === "second-semester"
+  ) {
+    subjectsDisplay.innerHTML = `
+<div class="year-header">FIRST YEAR</div>
+<div class="semester">
+        <div class="semester-header">SECOND SEMESTER</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Cat No.</th>
+              <th>Course Title</th>
+              <th>Credit Unit</th>
+              <th>Prerequisite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ICS 103</td>
+              <td>Computer Programming 2</td>
+              <td>2</td>
+              <td>ICS 102</td>
+            </tr>
+            <tr>
+              <td>ICS 103L</td>
+              <td>Computer Programming 2 Lab</td>
+              <td>1</td>
+              <td>ICS 102L</td>
+            </tr>
+            <tr>
+              <td>ICS 104</td>
+              <td>Digital Logic Design</td>
+              <td>2</td>
+              <td>ICS 102</td>
+            </tr>
+            <tr>
+              <td>ICS 104L</td>
+              <td>Digital Logic Design Lab</td>
+              <td>1</td>
+              <td>ICS 102</td>
+            </tr>
+            <tr>
+              <td>CS SIP</td>
+              <td>Social Issue and Professional Practice</td>
+              <td>3</td>
+              <td>ICS 101</td>
+            </tr>
+            <tr>
+              <td>GEN ED 3</td>
+              <td>Mathematics in the Modern World</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>GEN ED 4</td>
+              <td>The Contemporary World</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>GEN ED 5</td>
+              <td>The Life and Works of Rizal</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>RS 2</td>
+              <td>Responding to God's Call by Becoming Fully Human</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>NSTP 2</td>
+              <td>National Service Training Program 2</td>
+              <td>3</td>
+              <td>NSTP 1</td>
+            </tr>
+            <tr>
+              <td>PE 2</td>
+              <td>Fitness Exercises (FE)</td>
+              <td>2</td>
+              <td>PE 1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+`;
+  } else if (
+    program === "BSCS" &&
+    yearLevel === "second-year" &&
+    semester === "first-semester"
+  ) {
+    subjectsDisplay.innerHTML = `
+<div class="year-header">SECOND YEAR</div>
+    <!-- Semesters Side by Side -->
+    <div class="semesters">
+      <!-- First Semester -->
+      <div class="semester">
+        <div class="semester-header">FIRST SEMESTER</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Cat No.</th>
+              <th>Course Title</th>
+              <th>Credit Unit</th>
+              <th>Prerequisite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CS ALG</td>
+              <td>Design and Analysis of Algorithm</td>
+              <td>3</td>
+              <td>ICS 104</td>
+            </tr>
+            <tr>
+              <td>CS DS1</td>
+              <td>Discrete Structures 1</td>
+              <td>3</td>
+              <td>ICS 104</td>
+            </tr>
+            <tr>
+              <td>CS OOP</td>
+              <td>Object-Oriented Paradigms</td>
+              <td>2</td>
+              <td>ICS 104</td>
+            </tr>
+            <tr>
+              <td>CS OOP L</td>
+              <td>Object-Oriented Paradigms Lab</td>
+              <td>1</td>
+              <td>ICS 103, ICS 104</td>
+            </tr>
+            <tr>
+              <td>CS QM</td>
+              <td>Quantitative Methods</td>
+              <td>3</td>
+              <td>ICS 103, ICS 104</td>
+            </tr>
+            <tr>
+              <td>CS NC</td>
+              <td>Networking and Communications</td>
+              <td>2</td>
+              <td>ICS 101</td>
+            </tr>
+            <tr>
+              <td>CS NC L</td>
+              <td>Networking and Communications Lab</td>
+              <td>1</td>
+              <td>ICS 101</td>
+            </tr>
+            <tr>
+              <td>GEN ED 5</td>
+              <td>Purposive Communications</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>GEN ED 6</td>
+              <td>Art Appreciation</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>RS 3</td>
+              <td>The Church and Her Celebrations</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>PE 3</td>
+              <td>Dance, Sports, Outdoor and Adventure I</td>
+              <td>2</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+`;
+  } else if (
+    program === "BSCS" &&
+    yearLevel === "second-year" &&
+    semester === "second-semester"
+  ) {
+    subjectsDisplay.innerHTML = `
+<div class="year-header">SECOND YEAR</div>
+<div class="semester">
+        <div class="semester-header">SECOND SEMESTER</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Cat No.</th>
+              <th>Course Title</th>
+              <th>Credit Unit</th>
+              <th>Prerequisite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ICS 105</td>
+              <td>Information Management</td>
+              <td>2</td>
+              <td>ICS 104, CS ALG</td>
+            </tr>
+            <tr>
+              <td>ICS 105 L</td>
+              <td>Information Management Lab</td>
+              <td>1</td>
+              <td>ICS 104, CS ALG</td>
+            </tr>
+            <tr>
+              <td>CS DS2</td>
+              <td>Discrete Structures 2</td>
+              <td>3</td>
+              <td>CS DS1</td>
+            </tr>
+            <tr>
+              <td>CS AR</td>
+              <td>Computer Architecture and Organization</td>
+              <td>3</td>
+              <td>ICS 103, CS OOP</td>
+            </tr>
+            <tr>
+              <td>CS Prof Elec1</td>
+              <td>CS Professional Elective 1</td>
+              <td>2</td>
+              <td>3rd Yr. Standing</td>
+            </tr>
+            <tr>
+              <td>CS Prof Elec1 L</td>
+              <td>CS Professional Elective 1 Lab</td>
+              <td>1</td>
+              <td>3rd Yr. Standing</td>
+            </tr>
+            <tr>
+              <td>GEN ED 7</td>
+              <td>Science, Technology and Society</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>GEN ED 8</td>
+              <td>Ethics</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Gen Ed 12</td>
+              <td>The Entrepreneurial Mind</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>RS 4</td>
+              <td>Christian Discipleship: Stewardship and</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>PE 4</td>
+              <td>Dance, Sports, Outdoor and Adventure II</td>
+              <td>2</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+`;
+  } else if (
+    program === "BSCS" &&
+    yearLevel === "third-year" &&
+    semester === "first-semester"
+  ) {
+    subjectsDisplay.innerHTML = `
+<div class="year-header">THIRD YEAR</div>
+    <!-- Semesters Side by Side -->
+    <div class="semesters">
+      <!-- First Semester -->
+      <div class="semester">
+        <div class="semester-header">FIRST SEMESTER</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Cat No.</th>
+              <th>Course Title</th>
+              <th>Credit Unit</th>
+              <th>Prerequisite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ICS 106</td>
+              <td>Application Development and Emerging Technologies</td>
+              <td>2</td>
+              <td>ICS 103, ICS 104</td>
+            </tr>
+            <tr>
+              <td>ICS 106 L</td>
+              <td>
+                Application Development and Emerging Technologies Lab
+              </td>
+              <td>1</td>
+              <td>ICS 103, ICS 104</td>
+            </tr>
+            <tr>
+              <td>CS AMT</td>
+              <td>Automata Theory and Formal Language</td>
+              <td>2</td>
+              <td>CS DS2</td>
+            </tr>
+            <tr>
+              <td>CS HCI</td>
+              <td>
+                Human-Computer Interaction Principles and Methodologies
+              </td>
+              <td>1</td>
+              <td>3rd Yr. Standing</td>
+            </tr>
+            <tr>
+              <td>CS HCI L</td>
+              <td>
+                Human-Computer Interaction Principles and Methodologies
+                Lab
+              </td>
+              <td>2</td>
+              <td>3rd Yr. Standing</td>
+            </tr>
+            <tr>
+              <td>CSE 1</td>
+              <td>Computer Science Elective 1</td>
+              <td>1</td>
+              <td>3rd Yr. Standing</td>
+            </tr>
+            <tr>
+              <td>CSE 1 L</td>
+              <td>Computer Science Elective 1 lab</td>
+              <td>2</td>
+              <td>3rd Year Standing</td>
+            </tr>
+            <tr>
+              <td>CS Math</td>
+              <td>Advanced Mathematics for Computer Science</td>
+              <td>1</td>
+              <td>3rd Year Standing</td>
+            </tr>
+            <tr>
+              <td>CS Prof Elec2</td>
+              <td>CS Professional Elective 2</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>CS Prof Elec2 L</td>
+              <td>CS Professional Elective 2 lab</td>
+              <td>3</td>
+              <td>3rd Yr. Standing</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+`;
+  } else if (
+    program === "BSCS" &&
+    yearLevel === "third-year" &&
+    semester === "second-semester"
+  ) {
+    subjectsDisplay.innerHTML = `
+<div class="year-header">THIRD YEAR</div>
+<div class="semester">
+        <div class="semester-header">SECOND SEMESTER</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Cat No.</th>
+              <th>Course Title</th>
+              <th>Credit Unit</th>
+              <th>Prerequisite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CS PL</td>
+              <td>Programming Languages</td>
+              <td>2</td>
+              <td>CS AMT</td>
+            </tr>
+            <tr>
+              <td>CS PL L</td>
+              <td>Programming Languages Lab</td>
+              <td>1</td>
+              <td>CS AMT</td>
+            </tr>
+            <tr>
+              <td>CS SE1</td>
+              <td>Software Engineering 1</td>
+              <td>2</td>
+              <td>CS OOP, CS PL</td>
+            </tr>
+            <tr>
+              <td>CS SE1 L</td>
+              <td>Software Engineering 1 Lab</td>
+              <td>1</td>
+              <td>CS OOP, CS PL</td>
+            </tr>
+            <tr>
+              <td>CS THS1</td>
+              <td>Computer Science Thesis 1</td>
+              <td>3</td>
+              <td>CS OOP, CS QM</td>
+            </tr>
+            <tr>
+              <td>CS OS</td>
+              <td>Operating System</td>
+              <td>2</td>
+              <td>CS PL, CS OOP</td>
+            </tr>
+            <tr>
+              <td>CS OS L</td>
+              <td>Operating System Lab</td>
+              <td>1</td>
+              <td>CS PL, CS OOP</td>
+            </tr>
+            <tr>
+              <td>CS Prof Elec3</td>
+              <td>CS Professional Elective 3</td>
+              <td>2</td>
+              <td>3rd Year Standing</td>
+            </tr>
+            <tr>
+              <td>CS Prof Elec3 L</td>
+              <td>CS Professional Elective 3 Lab</td>
+              <td>1</td>
+              <td>3rd Yr. Standing</td>
+            </tr>
+            <tr>
+              <td>Gen Ed 9</td>
+              <td>Life and Works of Rizal</td>
+              <td>3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>CSE 2</td>
+              <td>Computer Science Elective 2</td>
+              <td>2</td>
+              <td>3rd Yr. Standing</td>
+            </tr>
+            <tr>
+              <td>CSE 2 L</td>
+              <td>Computer Science Elective 2 Lab</td>
+              <td>1</td>
+              <td>3rd Yr. Standing</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+`;
+  } else if (
+    program === "BSCS" &&
+    yearLevel === "third-year" &&
+    semester === "summer"
+  ) {
+    subjectsDisplay.innerHTML = `
+<div class="year-header">THIRD YEAR</div>
+<div class="semester">
+      <div class="semester-header">SUMMER</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Cat No.</th>
+            <th>Course Title</th>
+            <th>Credit Unit</th>
+            <th>Prerequisite</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CS PRC</td>
+            <td>Computer Science Practicum</td>
+            <td>3</td>
+            <td>3rd Year Standing</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+`;
+  } else if (
+    program === "BSCS" &&
+    yearLevel === "fourth-year" &&
+    semester === "first-semester"
+  ) {
+    subjectsDisplay.innerHTML = `
+<div class="year-header">FOURTH YEAR</div>
+    <!-- Semesters Side by Side -->
+    <div class="semesters">
+      <!-- First Semester -->
+      <div class="semester">
+        <div class="semester-header">FIRST SEMESTER</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Cat No.</th>
+              <th>Course Title</th>
+              <th>Credit Unit</th>
+              <th>Prerequisite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CS THS2</td>
+              <td>Computer Science Thesis 2</td>
+              <td>3</td>
+              <td>CS THS1</td>
+            </tr>
+            <tr>
+              <td>CS SE2</td>
+              <td>Software Engineering 2</td>
+              <td>2</td>
+              <td>CS SE1</td>
+            </tr>
+            <tr>
+              <td>CS SE2 L</td>
+              <td>Software Engineering 2 Lab</td>
+              <td>2</td>
+              <td>CS SE1</td>
+            </tr>
+            <tr>
+              <td>CS IAS</td>
+              <td>Information Assurance and Security</td>
+              <td>1</td>
+              <td>ICS 105</td>
+            </tr>
+            <tr>
+              <td>CS IAS L</td>
+              <td>Information Assurance and Security Lab</td>
+              <td>2</td>
+              <td>ICS 105</td>
+            </tr>
+            <tr>
+              <td>IT Prof ELec6 L</td>
+              <td>IT Professional Elective 6 Lab</td>
+              <td>1</td>
+              <td>4th Year Standing</td>
+            </tr>
+            <tr>
+              <td>CSE 3</td>
+              <td>Computer Science Elective 3</td>
+              <td>2</td>
+              <td>4th Yr. Standing</td>
+            </tr>
+            <tr>
+              <td>CSE 3 L</td>
+              <td>Computer Science Elective 3 Lab</td>
+              <td>1</td>
+              <td>4th Yr. Standing</td>
+            </tr>
+            <tr>
+              <td>CS Prof Elec4</td>
+              <td>CS Professional Elective 4</td>
+              <td>2</td>
+              <td>4th Yr. Standing</td>
+            </tr>
+            <tr>
+              <td>CS Prof Elec4 L</td>
+              <td>CS Professional Elective 4 Lab</td>
+              <td>1</td>
+              <td>4th Yr. Standing</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+`;
+  } else if (
+    program === "BSCS" &&
+    yearLevel === "fourth-year" &&
+    semester === "second-semester"
+  ) {
+    subjectsDisplay.innerHTML = `
+<div class="year-header">FOURTH YEAR</div>
+<div class="semester">
+        <div class="semester-header">SECOND SEMESTER</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Cat No.</th>
+              <th>Course Title</th>
+              <th>Credit Unit</th>
+              <th>Prerequisite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CS IES</td>
+              <td>Advanced Seminars and Exposure</td>
+              <td>3</td>
+              <td>4th Year Standing</td>
+            </tr>
+            <tr>
+              <td>CS Prof Elec5</td>
+              <td>CS Professional Elective 5</td>
+              <td>2</td>
+              <td>4th Year Standing</td>
+            </tr>
+            <tr>
+              <td>CS Prof Elec5 L</td>
+              <td>CS Professional Elective 5 Lab</td>
+              <td>1</td>
+              <td>4th Year Standing</td>
+            </tr>
+            <tr>
+              <td>CS Prof Elec6</td>
+              <td>CS Professional Elective 6</td>
+              <td>2</td>
+              <td>4th Year Standing</td>
+            </tr>
+            <tr>
+              <td>CS Prof Elec6 L</td>
+              <td>CS Professional Elective 6 Lab</td>
+              <td>1</td>
+              <td>4th Year Standing</td>
+            </tr>
+            <tr>
+              <td>CSE 4</td>
+              <td>Computer Science Elective 4</td>
+              <td>2</td>
+              <td>4th Year Standing</td>
+            </tr>
+            <tr>
+              <td>CSE 4 L</td>
+              <td>Computer Science Elective 4 Lab</td>
+              <td>1</td>
+              <td>4th Year Standing</td>
+            </tr>
+            <tr>
+              <td>CS DP</td>
+              <td>CS Thesis Documentation and Publication</td>
+              <td>3</td>
+              <td>4th Year Standing</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+`;
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar Example</title>
+  <link rel="stylesheet" href="path-to-your-css/sidebar.css">
+</head>
+<body>
+  <?php include 'sidebar.php'; ?>
+
+  <main class="content">
+    <!-- Main content goes here -->
+  </main>
+
+  <script src="path-to-your-js/sidebar.js"></script>
+</body>
+</html>

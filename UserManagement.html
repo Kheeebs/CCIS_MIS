@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 0;
+        margin: 0;
+        background-color: #f4f4f4;
+      }
+
+      .dashboard-container {
+        display: flex;
+      }
+
+      .sidebar {
+        background-color: #333;
+        width: 250px;
+        height: 100vh;
+        padding-top: 20px;
+        position: fixed;
+      }
+
+      .sidebar-logo {
+        width: 100px;
+        display: block;
+        margin: 0 auto 20px;
+      }
+
+      .sidebar-menu {
+        list-style: none;
+        padding: 0;
+      }
+
+      .sidebar-menu li {
+        margin-bottom: 10px;
+      }
+
+      .sidebar-menu a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+        background-color: #444;
+        text-align: center;
+        border-radius: 5px;
+      }
+
+      .sidebar-menu a:hover {
+        background-color: #555;
+      }
+
+      .logout-section {
+        margin-top: auto;
+        padding: 20px;
+      }
+
+      .logout-button {
+        background-color: #b30101;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        display: block;
+        border-radius: 5px;
+        text-decoration: none;
+      }
+
+      .logout-button:hover {
+        background-color: #900000;
+      }
+
+      .main-content {
+        margin-left: 250px;
+        padding: 20px;
+        flex: 1;
+      }
+
+      .main-header {
+        background-color: #1785ce;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .user-profile {
+        position: relative;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .profile-pic {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 5px;
+        object-fit: cover;
+      }
+
+      .dropdown-arrow {
+        margin-left: 5px;
+        font-size: 12px;
+      }
+
+      .dropdown {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: white;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      .dropdown-content {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .dropdown-content li {
+        border-bottom: 1px solid #ddd;
+      }
+
+      .dropdown-content a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: black;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #f1f1f1;
+      }
+
+      .breadcrumb {
+        margin-top: 10px;
+        font-size: 16px;
+        background-color: #eaeaea;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      .content-area {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+      }
+
+      .logout-section {
+        margin-top: auto;
+        padding: 20px;
+      }
+
+      .logout-button {
+        background-color: #b30101;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        display: block;
+        border-radius: 5px;
+        text-decoration: none;
+      }
+
+      .logout-button:hover {
+        background-color: #900000;
+      }
+
+      .main-content {
+        margin-left: 250px;
+        padding: 20px;
+        flex: 1;
+      }
+
+      .main-header {
+        background-color: #1785ce;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .breadcrumb {
+        margin-top: 10px;
+        font-size: 16px;
+        background-color: #eaeaea;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      .content-area {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+      }
+
+      .form-container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+      }
+
+      .form-container h2 {
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+      }
+
+      .form-group button {
+        padding: 10px 20px;
+        background-color: #1785ce;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .form-group button:hover {
+        background-color: #155b9c;
+      }
+
+      @media (max-width: 768px) {
+        .main-header {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .main-content {
+          margin-left: 0;
+          padding: 10px;
+        }
+
+        .sidebar {
+          width: 100px;
+        }
+
+        .sidebar-menu a {
+          padding: 5px;
+        }
+      }
+    </style>
+    <script>
+      function confirmLogout(event) {
+        if (!confirm("Are you sure you want to log out?")) {
+          event.preventDefault();
+        }
+      }
+
+      function toggleDropdown(dropdownId) {
+        var dropdownContent = document.getElementById(dropdownId);
+        dropdownContent.style.display =
+          dropdownContent.style.display === "block" ? "none" : "block";
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <div class="logos">
+          <img src="CCIS Logo.png" alt="College Logo 1" class="sidebar-logo" />
+          <img
+            src="College Logo.png"
+            alt="College Logo 2"
+            class="sidebar-logo"
+          />
+        </div>
+        <ul class="sidebar-menu">
+          <li><a href="Dashboard.html">Dashboard</a></li>
+          <li>
+            <a href="#" onclick="toggleDropdown('curriculumDropdown')"
+              >Curriculum</a
+            >
+            <ul
+              id="curriculumDropdown"
+              class="dropdown-content"
+              style="display: none"
+            >
+              <li><a href="CurriculumBSIT.html">BSIT</a></li>
+              <li><a href="CurriculumBSCS.html">BSCS</a></li>
+              <li><a href="CurriculumBLIS.html">BLIS</a></li>
+            </ul>
+          </li>
+
+          <li><a href="UserManagement.html">User Management</a></li>
+
+          <!-- Faculty Dropdown Menu -->
+          <li>
+            <a href="#" onclick="toggleDropdown('facultyDropdown')">Faculty</a>
+            <ul
+              id="facultyDropdown"
+              class="dropdown-content"
+              style="display: none"
+            >
+              <li><a href="AllTeachers.html">All Teachers</a></li>
+              <li><a href="AddTeacher.html">Add Teachers</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Subject</a></li>
+          <li><a href="Profile.html">Profile</a></li>
+        </ul>
+        <div class="logout-section">
+          <a
+            href="Log-in.html"
+            class="logout-button"
+            onclick="confirmLogout(event)"
+            >Logout</a
+          >
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <header class="main-header">
+          <h1>
+            College of Computing in Information Sciences Management Information
+            System
+          </h1>
+          <div class="user-profile" onclick="toggleDropdown('profileDropdown')">
+            <img src="User.jpg" alt="User Profile" class="profile-pic" />
+            <span class="dropdown-arrow">&#9662;</span>
+            <div class="dropdown" id="profileDropdown">
+              <ul class="dropdown-content">
+                <li><a href="Profile.html">Profile</a></li>
+                <li>
+                  <a href="Log-in.html" onclick="confirmLogout(event)"
+                    >Logout</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <div class="breadcrumb">
+          <p>Admin - User Management</p>
+        </div>
+
+        <div class="content-area">
+          <!-- Create User Form -->
+          <div class="form-container">
+            <h2>Create New User</h2>
+            <form id="createUserForm">
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label for="role">Role</label>
+                <select id="role" name="role" required>
+                  <option value="admin">Admin</option>
+                  <option value="teacher">Teacher</option>
+                  <option value="student">Student</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required />
+              </div>
+              <div class="form-group">
+                <button type="submit">Create User</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Edit User Form -->
+          <div class="form-container">
+            <h2>Edit User</h2>
+            <form id="editUserForm">
+              <div class="form-group">
+                <label for="existingUsers">Select User</label>
+                <select id="existingUsers" name="existingUsers" required>
+                  <!-- You can populate this dropdown dynamically with existing users using JavaScript -->
+                  <option value="user1">user1@example.com</option>
+                  <option value="user2">user2@example.com</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="editUsername">New Username</label>
+                <input type="text" id="editUsername" name="editUsername" />
+              </div>
+              <div class="form-group">
+                <label for="editEmail">New Email</label>
+                <input type="email" id="editEmail" name="editEmail" />
+              </div>
+              <div class="form-group">
+                <label for="editRole">New Role</label>
+                <select id="editRole" name="editRole">
+                  <option value="admin">Admin</option>
+                  <option value="teacher">Teacher</option>
+                  <option value="student">Student</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="editPassword">New Password</label>
+                <input type="password" id="editPassword" name="editPassword" />
+              </div>
+              <div class="form-group">
+                <button type="submit">Edit User</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("createUserForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("New user created successfully!");
+        });
+
+      document
+        .getElementById("editUserForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("User edited successfully!");
+        });
+    </script>
+  </body>
+</html>

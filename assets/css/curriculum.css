@@ -1,0 +1,230 @@
+
+body {
+  font-family: Arial, sans-serif;
+  padding: 0;
+  margin: 0;
+  background-color: #f4f4f4;
+}
+
+.dashboard-container {
+  display: flex;
+}
+
+.sidebar {
+  background-color: #333;
+  width: 250px;
+  height: 100vh;
+  padding-top: 20px;
+  position: fixed;
+}
+
+.sidebar-logo {
+  width: 100px;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-menu li {
+  margin-bottom: 10px;
+}
+
+.sidebar-menu a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  background-color: #444;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.sidebar-menu a:hover {
+  background-color: #555;
+}
+
+.logout-section {
+  margin-top: auto;
+  padding: 20px;
+}
+
+.logout-button {
+  background-color: #b30101;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  display: block;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.logout-button:hover {
+  background-color: #900000;
+}
+
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  flex: 1;
+}
+
+.main-header {
+  background-color: #1785ce;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content-area {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.program-button {
+  background-color: #1785ce;
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.program-button:hover {
+  background-color: #0f6fa0;
+  transform: translateY(-2px);
+}
+
+.dropdown {
+  margin-bottom: 20px;
+}
+
+.dropdown label {
+  margin-right: 10px;
+}
+
+.dropdown select {
+  width: 200px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.subjects {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.year-header {
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.semester {
+  margin-bottom: 20px;
+}
+
+.semester-header {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Faculty Dropdown Styles */
+.faculty-dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.faculty-dropdown .dropdown-arrow {
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+.faculty-dropdown-content {
+  display: none;
+  position: absolute;
+  top: 40px; /* Adjust this if necessary */
+  left: 0;
+  background-color: white;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.faculty-dropdown-content ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.faculty-dropdown-content li {
+  border-bottom: 1px solid #ddd;
+}
+
+.faculty-dropdown-content a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.faculty-dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .sidebar {
+    width: 100px;
+  }
+
+  .sidebar-menu a {
+    padding: 5px;
+  }
+
+  .program-button {
+    width: flex; /* Make buttons full-width on smaller screens */
+  }
+}
